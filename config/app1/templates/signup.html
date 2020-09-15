@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Log in & Sign up</title>
+
+    <!-- login font -->
+    <link href="https://fonts.googleapis.com/css2?family=Poor+Story&display=swap" rel="stylesheet">
+
+    <style>
+        body {
+            height: 100%;
+            width: 100%;
+        }
+
+        .container {
+            height: 100%;
+            width: 100%;
+            margin: auto;
+            text-align: center;
+        }
+
+        .main {
+            height: 50%;
+            width: 50%;
+            margin: auto;
+            text-align: center;
+            display: inline-block;
+            border: black solid 3px;
+            color: black;
+            font-family: 'Poor Story', cursive;
+            font-size: larger;
+        }
+
+        .in {
+            font-family: 'Poor Story', cursive;
+        }
+
+        .login_but {
+            background-color: white;
+            height: 40px;
+            width: 80px;
+            border: white solid 0px;
+            font-family: 'Poor Story', cursive;
+            font-size: medium;
+            text-align: center;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="container">
+        <br><br><br><br>
+        <fieldset class="main">
+            <legend style="font-size: larger;"> Sign Up </legend>
+
+            <div class="in">
+                <form method="POST" action=".">
+                    {{ error }}
+                    {% csrf_token %}
+                    <br>
+                    <div class="form-group">
+                        <label for="username"></label>
+                        <input type="text" 
+                        class="form-control" 
+                        id="username" 
+                        placeholder="아이디"
+                        name="username">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="useremail"></label>
+                        <input type="text" 
+                        class="form-control" 
+                        id="useremail" 
+                        placeholder="사용자 이메일"
+                        name="useremail">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="password"></label>
+                        <input type="password" 
+                        class="form-control" 
+                        id="password" 
+                        placeholder="비밀번호"
+                        name="password">
+                    </div>
+                    <br>
+                    <div class="form-group">
+                        <label for="password_confirm"></label>
+                        <input type="password" 
+                        class="form-control" 
+                        id="password_confirm" 
+                        placeholder="비밀번호 확인"
+                        name="password_confirm">
+                    </div>
+                    <br>
+                    <button type="submit" class="btn btn-primary"> 회원가입 </button>
+                </form>
+            </div>
+
+        </fieldset>
+    </div>
+</body>
+
+</html>

@@ -55,46 +55,40 @@
         <br><br><br><br>
         <br><br><br><br>
         <fieldset class="main">
-            {% if request.session.user %}
-            <legend style="font-size: larger;"> Welcome </legend>
-
+            <legend style="font-size: larger;"> My Blog </legend>
+            
+            {% for blog in object_list %}
             <div class="in">
 
-                <h1>환영합니다</h1>
+                <h1><a href="{% url 'detail' blog.id %}">{{ blog.title }}</a></h1>
+                <p>작성시간 : {{ blog.created_at }}</p>
+                <strong>{{ blog.body }}</strong>
                 <br>
-                <div class="btn">
-                    <a class="login_btn" href="{% url 'logout' %}">LOGOUT</a>
-                    |
-                    <a class="login_btn" href="{% url 'list' %}">MY BLOG</a>
-                </div>
                 <br>
-
-            </div>
-
-            {% else %}
-            <legend style="font-size: larger;"> Hello </legend>
-
-            <div class="in">
-                <form action="." method="post">
-                    {% csrf_token %}
-                    {{ error }}
+                <div class="btn">                    
+                    <form action="{% url 'change' blog.id %}">
+                        <button type="submit">수정</button>
+                    </form>
                     
-                    <h1>로그인이 필요한 서비스</h1>
-                    <br>
-                    <div class="btn">
-                        <a class="login_btn" href="{% url 'login' %}">LOGIN</a>
-                        |
-                        <a class='signup'
-                            href='{% url "signup" %}'>SIGN UP</a>
-                    </div>
-                    <br>
-                </form>
+                    <form action="{% url 'del' blog.id %}">
+                        <button type="submit">삭제</button>
+                    </form>
+
+                </div>
+                <hr>
+                <br>
 
             </div>
-            {% endif %}
+            {% endfor %}
+            
+            <br>
+                <div class="btn">                    
+                    <a class="login_btn" href="{% url 'new' %}">작성</a>
+                </div>
+
 
         </fieldset>
-    </div>
+    </div> 
 </body>
 
 </html>

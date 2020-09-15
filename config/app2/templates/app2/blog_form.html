@@ -53,45 +53,27 @@
 <body>
     <div class="container">
         <br><br><br><br>
-        <br><br><br><br>
         <fieldset class="main">
-            {% if request.session.user %}
-            <legend style="font-size: larger;"> Welcome </legend>
+            <legend style="font-size: larger;"> Sign Up </legend>
 
             <div class="in">
 
-                <h1>환영합니다</h1>
-                <br>
-                <div class="btn">
-                    <a class="login_btn" href="{% url 'logout' %}">LOGOUT</a>
-                    |
-                    <a class="login_btn" href="{% url 'list' %}">MY BLOG</a>
-                </div>
-                <br>
-
-            </div>
-
-            {% else %}
-            <legend style="font-size: larger;"> Hello </legend>
-
-            <div class="in">
-                <form action="." method="post">
+                {{ error }}
+                <form action="." method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
-                    {{ error }}
-                    
-                    <h1>로그인이 필요한 서비스</h1>
-                    <br>
-                    <div class="btn">
-                        <a class="login_btn" href="{% url 'login' %}">LOGIN</a>
-                        |
-                        <a class='signup'
-                            href='{% url "signup" %}'>SIGN UP</a>
+                    <p>제목</p>
+                    {{ form.title }}
+                    <p>내용</p>
+                    {{ form.body }}
+                    <div style="text-align: center;">
+                        <br>
+                        <button type='submit'>업로드</button>
                     </div>
-                    <br>
+                    <div class="btn">
+                        <a class="login_btn" href="{% url 'list' %}">My blog</a>
+                    </div>
                 </form>
-
             </div>
-            {% endif %}
 
         </fieldset>
     </div>

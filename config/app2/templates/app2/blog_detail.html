@@ -55,46 +55,21 @@
         <br><br><br><br>
         <br><br><br><br>
         <fieldset class="main">
-            {% if request.session.user %}
-            <legend style="font-size: larger;"> Welcome </legend>
+            <legend style="font-size: larger;"> My Blog </legend>
 
             <div class="in">
 
-                <h1>환영합니다</h1>
+                <h1>{{ object.title }}</h1>
+                <p>작성시간 : {{ object.created_at }}</p>
+                <strong>{{ object.body }}</strong>
                 <br>
-                <div class="btn">
-                    <a class="login_btn" href="{% url 'logout' %}">LOGOUT</a>
-                    |
-                    <a class="login_btn" href="{% url 'list' %}">MY BLOG</a>
-                </div>
+                <hr>
                 <br>
 
             </div>
-
-            {% else %}
-            <legend style="font-size: larger;"> Hello </legend>
-
-            <div class="in">
-                <form action="." method="post">
-                    {% csrf_token %}
-                    {{ error }}
-                    
-                    <h1>로그인이 필요한 서비스</h1>
-                    <br>
-                    <div class="btn">
-                        <a class="login_btn" href="{% url 'login' %}">LOGIN</a>
-                        |
-                        <a class='signup'
-                            href='{% url "signup" %}'>SIGN UP</a>
-                    </div>
-                    <br>
-                </form>
-
-            </div>
-            {% endif %}
 
         </fieldset>
-    </div>
+    </div> 
 </body>
 
 </html>
